@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101112">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MIGUEL OS">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>MIGUEL OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101112;--bg2:#17191B;--card:#1D2023;--line:#2B2F33;--tx:#F2F3F4;--tx2:#8F969D;--ac:#9BB5A3;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.5 'Schibsted Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;font-variant-numeric:tabular-nums}
+nav{position:fixed;z-index:5;background:var(--bg2);border-top:1px solid var(--line);bottom:env(safe-area-inset-bottom,0px);left:0;right:0;display:flex;justify-content:space-around}
+nav{overflow-x:auto}nav button{flex:1 0 auto;background:none;border:0;color:var(--tx2);padding:14px 12px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--ac)}
+main{max-width:720px;margin:0 auto;padding:28px 20px 160px}
+h1{font-size:15px;font-weight:500;color:var(--tx2);margin:0 0 4px}
+h2{font-size:13px;font-weight:500;color:var(--tx2);margin:40px 0 12px}
+.big{font-size:44px;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin:0}
+.big small{font-size:20px;color:var(--tx2);font-weight:400}
+.sub{color:var(--tx2);margin:6px 0 0}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .t{flex:1;min-width:0;overflow-wrap:anywhere}
+.row .m{color:var(--tx2);font-size:13px}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+button.b,.fab{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
+button.b:hover{border-color:var(--tx2)}
+button.p,.fab{background:var(--ac);color:#101112;border-color:var(--ac);font-weight:500}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+input,select,textarea{width:100%;background:var(--bg2);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:inherit}
+textarea{resize:none}
+.f{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-bottom:12px}
+.f .w{grid-column:1/-1}
+label{display:grid;gap:4px;color:var(--tx2);font-size:13px}
+.bar{height:4px;background:var(--line);border-radius:2px;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--ac);border-radius:2px}
+.run{background:var(--card);border:1px solid var(--ac);border-radius:10px;padding:16px;margin:24px 0 0}
+.run .big{color:var(--ac)}
+.note{color:var(--tx2);font-size:13px;border-left:2px solid var(--line);padding-left:12px;margin:16px 0}
+.empty{color:var(--tx2);padding:12px 0}
+.fab{position:fixed;right:16px;bottom:calc(64px + env(safe-area-inset-bottom,0px));box-shadow:0 4px 16px #0008}
+#cap{position:fixed;inset:0;background:#000a;display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 0;z-index:10}
+#cap.on{display:flex}
+#cap div{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px;width:100%;max-width:520px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(120px + env(safe-area-inset-bottom,0px));background:var(--card);border:1px solid var(--line);padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:11}
+#toast.on{opacity:1}
+@media(min-width:800px){
+nav{top:0;bottom:0;right:auto;width:190px;flex-direction:column;justify-content:flex-start;padding:28px 12px;border-top:0;border-right:1px solid var(--line)}
+nav button{flex:none;text-align:left;padding:10px 12px;border-radius:8px;font-size:14px}
+main{margin-left:190px;max-width:none;padding:48px 48px 120px}
+main>*{max-width:680px}
+.fab{left:14px;right:auto;bottom:24px;width:162px}
+#toast{bottom:32px}
+}
+details{margin-top:40px;color:var(--tx2);font-size:14px}summary{cursor:pointer;font-size:13px}details p{margin:10px 0}
+@media print{nav,.fab,#cap,#toast,.acts{display:none!important}body,:root{background:#fff!important;color:#000!important;--bg:#fff;--bg2:#fff;--card:#fff;--line:#ccc;--tx:#000;--tx2:#555}main{margin:0!important;padding:0!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<main id="main"></main>
+<button class="fab" id="capbtn">+ Captura rápida</button>
+<div id="cap"><div>
+<textarea id="cti" rows="3" placeholder="O que você precisa lembrar?"></textarea>
+<div class="row" style="border:0;padding-bottom:0">
+<button class="b" id="mic">Microfone</button>
+<div class="acts"><button class="b" id="cx">Fechar</button><button class="b p" id="cs">Salvar</button></div>
+</div></div></div>
+<div id="toast"></div>
+<script>
+const K='miguelos.v1';
+let S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{caps:[],proj:[],ses:[],cats:['Evastek / Dinheiro','Inglês','Marketing / Estudos','Trabalho','Projetos','Pessoal','Exercício','Outros']};
+S.ev=S.ev||[];S.ideas=S.ideas||[];S.ref=S.ref||{};
+S.rot=S.rot||'06:00 Acordar\n06:40 Sair para o trabalho\n07:00 Trabalho\n17:30 Chegar em casa\n18:00 Inglês\n19:00 Evastek / Dinheiro\n20:00 Jantar / descanso\n20:30 Estudo ou tarefa secundária\n21:15 Tempo pessoal\n22:00 Desacelerar\n22:30 Dormir';
+const save=()=>{S._t=Date.now();try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}window.cloudPush&&window.cloudPush()};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const dur=m=>{m=Math.max(0,Math.round(m));return m<60?m+'min':Math.floor(m/60)+'h'+String(m%60).padStart(2,'0')};
+const day=t=>new Date(t).toDateString();
+const hm=t=>new Date(t).toTimeString().slice(0,5);
+const plan=s=>(s.pe-s.ps)/6e4;
+const act=s=>s.st==='done'?(s.re-s.rs)/6e4:s.st==='running'?(Date.now()-s.rs)/6e4:(s.st==='abandoned'&&s.rs&&s.re)?(s.re-s.rs)/6e4:0;
+const tm=ms=>{const s=Math.floor(ms/1000);return String(Math.floor(s/3600)).padStart(2,'0')+':'+String(Math.floor(s%3600/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const VIEWS=[['hoje','Hoje'],['entrada','Entrada'],['projetos','Projetos'],['sessoes','Sessões'],['evastek','Evastek'],['ideias','Ideias'],['rel','Relatórios']];
+let V='hoje',toastT,RP=7;
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),1800)}
+function pct(a,b){return b?Math.round(a/b*100):0}
+const run=()=>S.ses.find(x=>x.st==='running');
+
+function hoje(){
+const td=S.ses.filter(x=>day(x.ps)===day(Date.now()));
+const pl=td.reduce((a,x)=>a+plan(x),0),ex=td.reduce((a,x)=>a+act(x),0);
+const nx=td.filter(x=>x.st==='planned').sort((a,b)=>a.ps-b.ps);
+const r=run(),n=S.caps.filter(x=>day(x.ts)===day(Date.now())).length;
+const d=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+return `<h1>Hoje</h1><p class="sub" style="margin:0 0 32px">${d}</p>
+<p class="big" id="exe">${dur(ex)} <small>de ${dur(pl)} planejados</small></p>
+<p class="sub">${pl?'Taxa de execução '+pct(ex,pl)+'%':'Nada planejado para hoje.'}</p>
+<div class="bar"><i style="width:${Math.min(100,pct(ex,pl))}%"></i></div>
+${r?`<div class="run"><div class="m" style="color:var(--tx2)">Em andamento: ${esc(r.task)}</div><p class="big" id="tm">${tm(Date.now()-r.rs)}</p><div class="acts" style="justify-content:flex-start;margin-top:12px"><button class="b p" data-a="fin" data-id="${r.id}">Finalizar</button><button class="b" data-a="ab" data-id="${r.id}">Abandonar</button></div></div>`:''}
+<h2>Próximas sessões</h2>
+${nx.length?nx.map(x=>`<div class="row"><div class="t">${esc(x.task)}<div class="m">${hm(x.ps)} a ${hm(x.pe)} · ${esc(x.cat)}</div></div><button class="b p" data-a="go" data-id="${x.id}">Começar</button></div>`).join(''):'<div class="empty">Nenhuma sessão planejada. Planeje em Sessões.</div>'}
+<h2>Rotina</h2><div class="row"><div class="t">Agora: ${cur()}</div></div>
+<h2>Capturas de hoje</h2>
+<div class="row"><div class="t">${n?`Você capturou ${n} ${n>1?'informações':'informação'} hoje.`:'Nada capturado hoje.'}</div><button class="b" data-a="nav" data-v="entrada">Ver entrada</button></div>
+<details><summary>Como usar</summary><p>Durante o dia: toque em Captura rápida, escreva e salve. Não organize agora.</p><p>À noite: em Entrada, transforme cada captura em tarefa, projeto, ideia ou nota.</p><p>Para trabalhar: em Sessões, planeje o horário, clique em Começar e depois em Finalizar. Esta tela mostra o planejado contra o executado.</p><p>Toda semana abra Relatórios. No fim do mês, use a visão Mensal e responda a reflexão.</p></details>`}
+
+function entrada(){
+const inb=S.caps.filter(x=>!x.type),org=S.caps.filter(x=>x.type);
+return `<h1>Entrada</h1><p class="sub">Tudo que você capturou fica aqui até ser organizado.</p>
+<h2>Para organizar (${inb.length})</h2>
+${inb.length?inb.map(x=>`<div class="row" style="align-items:flex-start"><div class="t">${esc(x.t)}<div class="m">${new Date(x.ts).toLocaleDateString('pt-BR')} ${hm(x.ts)}</div></div><div class="acts">${['Tarefa','Projeto','Ideia','Nota'].map(t=>`<button class="b" data-a="cv" data-id="${x.id}" data-t="${t}">${t}</button>`).join('')}<button class="b" data-a="dc" data-id="${x.id}">Excluir</button></div></div>`).join(''):'<div class="empty">Entrada vazia.</div>'}
+<h2>Organizadas</h2>
+${org.length?org.slice().reverse().map(x=>`<div class="row"><div class="t">${esc(x.t)}</div><span class="m">${x.type}</span><button class="b" data-a="dc" data-id="${x.id}">Excluir</button></div>`).join(''):'<div class="empty">Nada organizado ainda.</div>'}`}
+
+function projetos(){
+const at=S.proj.filter(p=>p.st==='ativo');
+const hrs=p=>S.ses.filter(s=>s.proj===p.id).reduce((a,s)=>a+act(s),0);
+return `<h1>Projetos</h1>
+<div class="f" style="margin-top:20px"><label class="w">Nome<input id="pn"></label><label class="w">Próxima ação (concreta, executável agora)<input id="pa" placeholder="Ex.: Enviar mensagem para 5 possíveis clientes"></label><button class="b p" data-a="np">Criar projeto</button></div>
+${at.length>3?'<p class="note">Você já possui vários projetos ativos. Considere concluir ou pausar um antes de iniciar outro.</p>':''}
+<h2>Ativos e pausados</h2>
+${S.proj.filter(p=>p.st!=='concluído').length?S.proj.filter(p=>p.st!=='concluído').map(p=>`<div class="row" style="align-items:flex-start"><div class="t"><b style="font-weight:500">${esc(p.name)}</b> <span class="m">${p.st} · ${dur(hrs(p))} investidos</span><input data-ch="nx" data-id="${p.id}" value="${esc(p.next||'')}" placeholder="Defina a próxima ação" style="margin-top:8px"></div><div class="acts"><button class="b" data-a="ps" data-id="${p.id}">${p.st==='ativo'?'Pausar':'Retomar'}</button><button class="b" data-a="cc" data-id="${p.id}">Concluir</button></div></div>`).join(''):'<div class="empty">Nenhum projeto.</div>'}
+${S.proj.some(p=>p.st==='concluído')?'<h2>Concluídos</h2>'+S.proj.filter(p=>p.st==='concluído').map(p=>`<div class="row"><div class="t">${esc(p.name)}</div><span class="m">${dur(hrs(p))}</span></div>`).join(''):''}`}
+
+function sessoes(){
+const td=S.ses.filter(x=>day(x.ps)===day(Date.now())).sort((a,b)=>a.ps-b.ps);
+const old=S.ses.filter(x=>day(x.ps)!==day(Date.now())).sort((a,b)=>b.ps-a.ps).slice(0,10);
+const row=x=>`<div class="row"><div class="t">${esc(x.task)}<div class="m">${esc(x.cat)} · planejado ${hm(x.ps)}–${hm(x.pe)} (${dur(plan(x))})${x.rs?` · início real ${hm(x.rs)}`:''}${x.st==='done'?` · executado ${dur(act(x))}`:''}</div></div>${x.st==='planned'?`<button class="b p" data-a="go" data-id="${x.id}">Começar</button>`:x.st==='running'?`<button class="b p" data-a="fin" data-id="${x.id}">Finalizar</button>`:`<span class="m">${{done:'concluída',abandoned:'abandonada'}[x.st]}</span>`}</div>`;
+return `<h1>Sessões</h1><p class="sub">O que você vai fazer agora?</p>
+<div class="f" style="margin-top:20px"><label class="w">Tarefa<input id="st" list="tl" placeholder="Ex.: Prospectar clientes"><datalist id="tl">${S.caps.filter(x=>x.type==='Tarefa').map(x=>`<option value="${esc(x.t)}">`).join('')}</datalist></label>
+<label>Categoria<select id="sc">${S.cats.map(c=>`<option>${esc(c)}</option>`).join('')}</select></label>
+<label>Projeto<select id="sp"><option value="">Nenhum</option>${S.proj.filter(p=>p.st==='ativo').map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></label>
+<label>Início<input type="time" id="s1" value="19:00"></label><label>Fim<input type="time" id="s2" value="20:00"></label>
+<button class="b p w" data-a="ns">Planejar sessão</button></div>
+<h2>Hoje</h2>${td.length?td.map(row).join(''):'<div class="empty">Nenhuma sessão hoje.</div>'}
+${old.length?'<h2>Anteriores</h2>'+old.map(row).join(''):''}
+<h2>Rotina</h2><textarea data-ch="rot" rows="11">${esc(S.rot)}</textarea><p class="sub" style="font-size:13px">Uma linha por horário. A rotina é referência, não obrigação.</p>`}
+
+function calc(days){
+const lim=Date.now()-days*864e5,L=S.ses.filter(x=>x.ps>=lim&&x.st!=='planned'&&x.st!=='running'||x.ps>=lim&&x.st==='planned'&&x.pe<Date.now());
+const pl=L.reduce((a,x)=>a+plan(x),0),ex=L.reduce((a,x)=>a+act(x),0);
+const dn=L.filter(x=>x.st==='done'),ab=L.filter(x=>x.st==='abandoned');
+const st=L.filter(x=>x.rs),dl=st.length?st.reduce((a,x)=>a+Math.max(0,(x.rs-x.ps)/6e4),0)/st.length:0;
+const dd=new Set(dn.map(x=>day(x.ps))),cat={};
+L.forEach(x=>{const a=act(x);if(a)cat[x.cat]=(cat[x.cat]||0)+a});
+return{L,pl,ex,dn,ab,dl,dd:dd.size,cat,avg:dn.length?dn.reduce((a,x)=>a+act(x),0)/dn.length:0}}
+function streak(){const s=new Set(S.ses.filter(x=>x.st==='done').map(x=>day(x.ps)));let b=0,c=0,d=new Date(Math.min(...[...s].map(x=>+new Date(x)),Date.now()));d.setHours(0,0,0,0);while(d<=new Date()){if(s.has(d.toDateString())){c++;b=Math.max(b,c)}else c=0;d.setDate(d.getDate()+1)}return b}
+function rel(){
+const r=calc(RP),mx=Math.max(1,...Object.values(r.cat));
+const e=r.L.filter(x=>x.rs),ea=e.filter(x=>new Date(x.ps).getHours()*60+new Date(x.ps).getMinutes()<1170),la=e.filter(x=>!ea.includes(x));
+const cr=a=>pct(a.filter(x=>x.st==='done').length,a.length);
+let pat=[];if(e.length)pat.push(`Seu atraso médio para iniciar sessões foi de ${Math.round(r.dl)} minutos.`);
+if(ea.length>=2&&la.length>=2)pat.push(`Sessões planejadas antes das 19h30 tiveram ${cr(ea)}% de conclusão; depois disso, ${cr(la)}%.`);
+return `<h1>Relatório dos últimos ${RP} dias</h1><div class="acts" style="justify-content:flex-start;margin-top:12px"><button class="b ${RP===7?'p':''}" data-a="rp" data-n="7">Semanal</button><button class="b ${RP===30?'p':''}" data-a="rp" data-n="30">Mensal</button></div>
+<h2>Execução</h2>
+<p class="big">${dur(r.ex)} <small>de ${dur(r.pl)} planejados</small></p><p class="sub">Taxa de execução ${pct(r.ex,r.pl)}%</p>
+<div class="row"><span>Sessões concluídas</span><span>${r.dn.length}</span></div><div class="row"><span>Sessões abandonadas</span><span>${r.ab.length}</span></div>
+<h2>Distribuição</h2>
+${Object.keys(r.cat).length?Object.entries(r.cat).sort((a,b)=>b[1]-a[1]).map(([c,v])=>`<div style="margin-bottom:14px"><div class="row" style="border:0;padding:0"><span>${esc(c)}</span><span class="m">${dur(v)}</span></div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div>`).join(''):'<div class="empty">Sem dados ainda.</div>'}
+<h2>Consistência</h2>
+<div class="row"><span>Dias ativos</span><span>${r.dd} de ${RP}</span></div><div class="row"><span>Média diária</span><span>${dur(r.ex/RP)}</span></div><div class="row"><span>Melhor sequência</span><span>${streak()} dias</span></div><div class="row"><span>Atraso médio para iniciar</span><span>${Math.round(r.dl)} min</span></div><div class="row"><span>Duração média das sessões</span><span>${dur(r.avg)}</span></div>
+<h2>Padrões</h2>${pat.length?pat.map(p=>`<p class="note">${p}</p>`).join(''):'<div class="empty">Padrões aparecem depois de algumas sessões.</div>'}
+${RP===30?extra():''}<h2>Exportar</h2><div class="acts" style="justify-content:flex-start;margin-bottom:10px"><button class="b" data-a="xj">Ver JSON</button><button class="b" data-a="xc">Ver CSV</button><button class="b" data-a="xk">Copiar</button><button class="b" data-a="pr">Imprimir / PDF</button></div>
+<textarea id="xo" rows="5" readonly placeholder="Escolha um formato para exportar os dados."></textarea>`}
+
+function cur(){let c='Sem rotina definida';const n=new Date().getHours()*60+new Date().getMinutes();S.rot.split('\n').forEach(l=>{const m=l.match(/^(\d\d):(\d\d)\s+(.*)/);if(m&&+m[1]*60+ +m[2]<=n)c=m[1]+':'+m[2]+' '+m[3]});return esc(c)}
+const evs=()=>{const l=Date.now()-30*864e5,E=S.ev.filter(x=>x.ts>=l);return{s:k=>E.reduce((a,x)=>a+x[k],0),h:S.ses.filter(x=>x.cat==='Evastek / Dinheiro'&&x.ps>=l).reduce((a,x)=>a+act(x),0),E}};
+const EF=[['l','Leads contatados'],['r','Respostas'],['m','Reuniões'],['p','Propostas'],['c','Clientes fechados'],['v','Receita (R$)']];
+function evastek(){const{s,h,E}=evs();
+return `<h1>Evastek / Dinheiro</h1><p class="sub">Últimos 30 dias. Tudo aqui é inserido por você.</p>
+<h2>Tempo investido</h2><p class="big">${dur(h)}</p>
+<h2>Resultado gerado</h2>${EF.map(([k,n])=>`<div class="row"><span>${n}</span><span>${s(k)}</span></div>`).join('')}
+<h2>Registrar resultados</h2><div class="f">${EF.map(([k,n])=>`<label>${n}<input type="number" min="0" id="e${k}" placeholder="0"></label>`).join('')}<button class="b p w" data-a="ne">Registrar</button></div>
+${E.length?'<h2>Registros recentes</h2>'+E.slice(-5).reverse().map(x=>`<div class="row"><span class="m">${new Date(x.ts).toLocaleDateString('pt-BR')}</span><span class="t" style="text-align:right">${x.l} contatos, ${x.m} reuniões, ${x.p} propostas, R$ ${x.v}</span></div>`).join(''):''}`}
+function ideias(){const B=[['Em análise','Analisar'],['Aguardando','Aguardar'],['Arquivada','Arquivar'],['Transformada em projeto','Virar projeto']];
+return `<h1>Ideias</h1><p class="sub">Ter uma ideia não é começar um projeto.</p>
+<div class="f" style="margin-top:20px"><label class="w">Ideia<input id="in"></label><label class="w">Descrição e motivo<textarea id="id" rows="2"></textarea></label><button class="b p w" data-a="ni">Guardar ideia</button></div>
+${S.ideas.filter(i=>Date.now()-i.ts<7*864e5).length>=3?'<p class="note">Você adicionou várias ideias recentemente. Considere revisar seus projetos atuais antes de começar outro.</p>':''}
+<h2>Guardadas</h2>${S.ideas.length?S.ideas.slice().reverse().map(i=>`<div class="row" style="align-items:flex-start"><div class="t">${esc(i.name)}<div class="m">${i.st}${i.desc?': '+esc(i.desc):''}</div></div><div class="acts">${i.st==='Transformada em projeto'?'':B.filter(b=>b[0]!==i.st).map(b=>`<button class="b" data-a="is" data-id="${i.id}" data-s="${b[0]}">${b[1]}</button>`).join('')}</div></div>`).join(''):'<div class="empty">Nenhuma ideia guardada.</div>'}`}
+function extra(){const{s,h}=evs(),w=[0,1,2,3].map(i=>S.ses.filter(x=>x.ps>=Date.now()-(i+1)*7*864e5&&x.ps<Date.now()-i*7*864e5).reduce((a,x)=>a+act(x),0)),mo=new Date().toISOString().slice(0,7);
+const Q=['O que funcionou?','O que não funcionou?','Onde perdi mais tempo?','Qual foi minha maior conquista?','Qual projeto deve continuar?','O que devo parar de fazer?','Qual será minha principal prioridade no próximo mês?'];
+return `<h2>Resumo do mês</h2><div class="row"><span>Projetos ativos</span><span>${S.proj.filter(p=>p.st==='ativo').length}</span></div><div class="row"><span>Projetos concluídos</span><span>${S.proj.filter(p=>p.st==='concluído').length}</span></div><div class="row"><span>Semana mais produtiva</span><span>${dur(Math.max(...w))}</span></div><div class="row"><span>Semana menos produtiva</span><span>${dur(Math.min(...w))}</span></div>
+<h2>Evastek / Dinheiro</h2><div class="row"><span>Horas</span><span>${dur(h)}</span></div>${EF.map(([k,n])=>`<div class="row"><span>${n}</span><span>${s(k)}</span></div>`).join('')}
+<h2>Reflexão mensal</h2>${Q.map((q,i)=>`<label style="margin-bottom:12px">${q}<textarea rows="2" data-ch="ref" data-id="${mo}-${i}">${esc(S.ref[mo+'-'+i]||'')}</textarea></label>`).join('')}`}
+function render(){
+$('#nav').innerHTML=VIEWS.map(([k,n])=>`<button data-a="nav" data-v="${k}" class="${V===k?'on':''}">${n}</button>`).join('');
+$('#main').innerHTML={hoje,entrada,projetos,sessoes,evastek,ideias,rel}[V]();scrollTo(0,0)}
+function capOpen(o){$('#cap').classList.toggle('on',o);if(o){$('#cti').value='';$('#cti').focus()}else{try{rc&&rc.stop()}catch(e){}}}
+function capSave(){const t=$('#cti').value.trim();if(!t)return;S.caps.push({id:uid(),t,ts:Date.now()});save();capOpen(false);toast('Salvo');render()}
+let rc=null;
+function mic(){const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R)return toast('Voz indisponível neste navegador');try{rc=new R();rc.lang='pt-BR';rc.onresult=e=>{$('#cti').value=[...e.results].map(r=>r[0].transcript).join(' ')};rc.onerror=()=>toast('Não foi possível usar o microfone');rc.start();toast('Ouvindo...')}catch(e){toast('Voz indisponível')}}
+$('#capbtn').onclick=()=>capOpen(true);$('#cx').onclick=()=>capOpen(false);$('#cs').onclick=capSave;$('#mic').onclick=mic;
+$('#cti').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();capSave()}};
+addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.code==='Space'){e.preventDefault();capOpen(true)}if(e.key==='Escape')capOpen(false)});
+const csv=()=>'id,categoria,tarefa,inicio_planejado,fim_planejado,inicio_real,fim_real,status\n'+S.ses.map(x=>[x.id,x.cat,x.task,new Date(x.ps).toISOString(),new Date(x.pe).toISOString(),x.rs?new Date(x.rs).toISOString():'',x.re?new Date(x.re).toISOString():'',x.st].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+document.addEventListener('click',e=>{
+const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id;
+const ses=S.ses.find(x=>x.id===id),pr=S.proj.find(x=>x.id===id),cp=S.caps.find(x=>x.id===id);
+if(a==='nav'){V=b.dataset.v;return render()}
+if(a==='pr'){try{print()}catch(x){toast('Use a impressão do navegador')}return}
+if(a==='rp'){RP=+b.dataset.n;return render()}
+if(a==='ne'){const g=k=>+$('#e'+k).value||0;S.ev.push({id:uid(),ts:Date.now(),l:g('l'),r:g('r'),m:g('m'),p:g('p'),c:g('c'),v:g('v')});save();toast('Registrado');return render()}
+if(a==='ni'){const n=$('#in').value.trim();if(!n)return toast('Dê um nome à ideia');S.ideas.push({id:uid(),name:n,desc:$('#id').value.trim(),st:'Ideia',ts:Date.now()});save();return render()}
+if(a==='is'){const i=S.ideas.find(x=>x.id===id);i.st=b.dataset.s;if(i.st==='Transformada em projeto')S.proj.push({id:uid(),name:i.name,next:'',st:'ativo',ts:Date.now()});save();return render()}
+if(a==='xj'){$('#xo').value=JSON.stringify(S,null,1);return}
+if(a==='xc'){$('#xo').value=csv();return}
+if(a==='xk'){try{navigator.clipboard.writeText($('#xo').value).then(()=>toast('Copiado'),()=>{$('#xo').select();toast('Selecione e copie')})}catch(x){$('#xo').select();toast('Selecione e copie')}return}
+if(a==='cv'){cp.type=b.dataset.t;if(cp.type==='Ideia')S.ideas.push({id:uid(),name:cp.t,desc:'',st:'Ideia',ts:Date.now()});if(cp.type==='Projeto')S.proj.push({id:uid(),name:cp.t,next:'',st:'ativo',ts:Date.now()})}
+else if(a==='dc')S.caps=S.caps.filter(x=>x.id!==id);
+else if(a==='np'){const n=$('#pn').value.trim();if(!n)return toast('Dê um nome ao projeto');S.proj.push({id:uid(),name:n,next:$('#pa').value.trim(),st:'ativo',ts:Date.now()})}
+else if(a==='ps')pr.st=pr.st==='ativo'?'pausado':'ativo';
+else if(a==='cc')pr.st='concluído';
+else if(a==='ns'){const t=$('#st').value.trim(),f=v=>{const d=new Date();const[h,m]=v.split(':');d.setHours(+h,+m,0,0);return+d};if(!t)return toast('Informe a tarefa');const ps=f($('#s1').value),pe=f($('#s2').value);if(!(pe>ps))return toast('O fim precisa ser depois do início');S.ses.push({id:uid(),task:t,cat:$('#sc').value,proj:$('#sp').value,ps,pe,st:'planned'})}
+else if(a==='go'){if(run())return toast('Finalize a sessão em andamento primeiro');ses.rs=Date.now();ses.st='running'}
+else if(a==='fin'){ses.re=Date.now();ses.st='done'}
+else if(a==='ab'){ses.st='abandoned';if(ses.rs)ses.re=Date.now()}
+save();render()});
+document.addEventListener('change',e=>{const c=e.target.dataset.ch;if(c==='rot'){S.rot=e.target.value;save();toast('Salvo');return}if(c==='ref'){S.ref[e.target.dataset.id]=e.target.value;save();return}if(c==='nx'){S.proj.find(p=>p.id===e.target.dataset.id).next=e.target.value.trim();save();toast('Salvo')}});
+setInterval(()=>{const r=run(),t=$('#tm');if(r&&t)t.textContent=tm(Date.now()-r.rs)},1000);
+window.MOS={get:()=>S,set:o=>{S=o;S.ev=S.ev||[];S.ideas=S.ideas||[];S.ref=S.ref||{};S.caps=S.caps||[];S.proj=S.proj||[];S.ses=S.ses||[];S.cats=S.cats||[];try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}render()}};
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+render();
+</script>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {getAuth,signInAnonymously,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+const cfg={apiKey:"AIzaSyCEG8ZwHvayXLqy0HfrlcbobLjW-9MSGZI",authDomain:"miguel-os-960c4.firebaseapp.com",projectId:"miguel-os-960c4",storageBucket:"miguel-os-960c4.firebasestorage.app",messagingSenderId:"850608999407",appId:"1:850608999407:web:7f2a91a9e385cc6ebd441a"};
+try{
+const app=initializeApp(cfg),auth=getAuth(app),db=getFirestore(app);
+let ref=null,timer;
+const ready=new Promise(res=>onAuthStateChanged(auth,u=>{if(u){ref=doc(db,'users',u.uid,'data','state');res()}}));
+signInAnonymously(auth).catch(e=>toast('Backup na nuvem indisponível (ative o login anônimo)'));
+const push=()=>{if(!ref)return;clearTimeout(timer);timer=setTimeout(()=>setDoc(ref,{json:JSON.stringify(window.MOS.get()),t:Date.now()}).catch(()=>toast('Backup falhou (veja as regras do Firestore)')),1500)};
+window.cloudPush=push;
+ready.then(async()=>{const x=await getDoc(ref);if(x.exists()){const d=x.data(),l=window.MOS.get();if((d.t||0)>(l._t||0))window.MOS.set(JSON.parse(d.json));else push()}else push();toast('Backup na nuvem ativo')}).catch(()=>toast('Backup falhou (veja as regras do Firestore)'));
+}catch(e){console.warn(e)}
+</script>
+</body>
+</html>

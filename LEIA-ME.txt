@@ -1,0 +1,31 @@
+MIGUEL OS - COMO COLOCAR NO AR E USAR
+
+PARTE 1 - Ligar o banco de dados (uma vez só, 5 minutos)
+Abra console.firebase.google.com e entre no projeto miguel-os-960c4.
+1. Build > Authentication > Get started > Sign-in method > Anonymous > Ativar > Salvar.
+   (Isso é invisível: não existe tela de login. Só identifica o seu navegador.)
+2. Build > Firestore Database > Create database > escolha a região (southamerica-east1 / São Paulo) > Modo de produção.
+3. Na aba Regras (Rules) do Firestore, apague tudo, cole o conteúdo do arquivo firestore.rules e clique em Publicar.
+   Não use o "modo de teste": ele deixa o banco aberto para qualquer pessoa.
+
+PARTE 2 - Colocar o app na internet
+Descompacte o ZIP. Acesse app.netlify.com/drop e arraste a PASTA inteira para a página.
+Você recebe um endereço https://algo.netlify.app. Esse é o seu MIGUEL OS.
+(Alternativa: Firebase Hosting, que exige o Firebase CLI.)
+Se o backup não ligar, em Firebase > Authentication > Settings > Authorized domains, adicione o domínio da Netlify.
+
+PARTE 3 - Instalar na tela inicial
+Celular Android: abra o endereço no Chrome > menu (três pontos) > Instalar app.
+iPhone: abra no Safari > Compartilhar > Adicionar à Tela de Início.
+Notebook: abra no Chrome ou Edge > ícone de instalar na barra de endereço.
+
+COMO FUNCIONA
+- Tudo é salvo no próprio aparelho na hora e funciona sem internet.
+- Quando há internet, uma cópia vai para o Firebase (backup). Aparece "Backup na nuvem ativo".
+- Sem login, cada aparelho/navegador tem o seu próprio espaço. Celular e notebook NÃO compartilham dados.
+  Para levar dados de um aparelho para outro, use Relatórios > Ver JSON > Copiar.
+- No iPhone, o app instalado e o Safari têm armazenamento separado. Use sempre o app instalado depois de instalar.
+
+USO DIÁRIO
+Dia: Captura rápida (Ctrl+Shift+Espaço no notebook). Noite: Entrada > organizar. Execução: Sessões > Começar > Finalizar.
+Semana: Relatórios. Mês: Relatórios > Mensal.
